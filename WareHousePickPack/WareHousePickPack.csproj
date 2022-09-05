@@ -11,6 +11,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AppFonts\MaterialDesignIcons.ttf" />
+    <None Remove="AppFonts\PoppinsBold.ttf" />
+    <None Remove="AppFonts\PoppinsMedium.ttf" />
+    <None Remove="AppFonts\PoppinsRegular.ttf" />
+    <None Remove="AppFonts\PoppinsSemiBold.ttf" />
+    <None Remove="AppFonts\WorkSansBold.ttf" />
+    <None Remove="AppFonts\WorkSansExtraBold.ttf" />
+    <None Remove="AppFonts\WorkSansMedium.ttf" />
+    <None Remove="AppFonts\WorkSansRegular.ttf" />
+    <None Remove="AppFonts\WorkSansSemiBold.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AppFonts\MaterialDesignIcons.ttf" />
+    <EmbeddedResource Include="AppFonts\PoppinsBold.ttf" />
+    <EmbeddedResource Include="AppFonts\PoppinsMedium.ttf" />
+    <EmbeddedResource Include="AppFonts\PoppinsRegular.ttf" />
+    <EmbeddedResource Include="AppFonts\PoppinsSemiBold.ttf" />
+    <EmbeddedResource Include="AppFonts\WorkSansBold.ttf" />
+    <EmbeddedResource Include="AppFonts\WorkSansExtraBold.ttf" />
+    <EmbeddedResource Include="AppFonts\WorkSansMedium.ttf" />
+    <EmbeddedResource Include="AppFonts\WorkSansRegular.ttf" />
+    <EmbeddedResource Include="AppFonts\WorkSansSemiBold.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
