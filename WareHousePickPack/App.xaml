@@ -1,8 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WareHousePickPack.App">
+<Application 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:converters="clr-namespace:WareHousePickPack.Converters"
+    x:Class="WareHousePickPack.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary" />
+            <Color x:Key="PrimaryDark">#000000</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
+            <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
+            <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+            
+            <!--App Colors-->
+            <Color x:Key="AppBg">#FCFCFC</Color>
+            <Color x:Key="FontBlack">#000000</Color>
+            <Color x:Key="FontGreen">#08AC8B</Color>
+            <Color x:Key="FontBlue">#20A5E1</Color>
+            <Color x:Key="FontGrey">#606060</Color>
+            <!--App Colors-->
 
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="Black" />
+            </Style>
+
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
