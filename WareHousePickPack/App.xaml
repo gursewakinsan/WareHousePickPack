@@ -27,6 +27,12 @@
                 <Setter Property="BarTextColor" Value="Black" />
             </Style>
 
+            <OnPlatform
+				x:Key="MaterialFontFamily"
+				x:TypeArguments="x:String"
+				Android="materialdesignicons-webfont.ttf#Material Design Icons"
+				iOS="Material Design Icons" />
+
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>

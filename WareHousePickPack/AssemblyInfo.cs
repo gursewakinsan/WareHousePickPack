@@ -13,5 +13,3 @@ using Xamarin.Forms.Xaml;
 [assembly: ExportFont("WorkSansMedium.ttf", Alias = "WorkSansMediumFontFamily")]
 [assembly: ExportFont("WorkSansRegular.ttf", Alias = "WorkSansRegularFontFamily")]
 [assembly: ExportFont("WorkSansSemiBold.ttf", Alias = "WorkSansSemiBoldFontFamily")]
-
-[assembly: ExportFont("MaterialDesignIcons.ttf", Alias = "MaterialIconsFontFamily")]

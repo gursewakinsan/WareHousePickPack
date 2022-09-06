@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WareHousePickPack.Views.DashboardPage"
+    BackgroundColor="{StaticResource AppBg}"
+    xmlns:fontawesome="clr-namespace:WareHousePickPack.Helper"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+	ios:Page.UseSafeArea="True">
+    <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,20,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" ColumnSpacing="0" RowSpacing="5" Margin="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="44"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <StackLayout 
+                Grid.Row="0"
+			    Grid.Column="0" 
+                Orientation="Horizontal" 
+                HorizontalOptions="StartAndExpand" Spacing="2">
+                <Label
+			        FontFamily="WorkSansSemiBoldFontFamily"
+			        FontSize="24"
+			        HorizontalTextAlignment="Start"
+			        Text="Ware house"
+			        TextColor="Black"
+                    MaxLines="1"
+                    LineBreakMode="TailTruncation"
+			        VerticalTextAlignment="Start" />
+
+                <Label
+			        FontFamily="{StaticResource MaterialFontFamily}"
+			        FontSize="35" Padding="0" Margin="0,2,0,0"
+			        HorizontalTextAlignment="Start"
+			        Text="{x:Static fontawesome:AppFlatIcons.ChevronDown}"
+			        TextColor="Black"
+			        VerticalTextAlignment="Center"/>
+            </StackLayout>
+
+            <Label
+			    Grid.Row="1"
+			    Grid.Column="0"
+			    FontFamily="WorkSansRegularFontFamily"
+			    FontSize="14"
+			    HorizontalTextAlignment="Start"
+			    Text="3620 des Grandes Tourelles Avenue, US"
+			    TextColor="Black"
+                MaxLines="1"
+                LineBreakMode="TailTruncation"
+			    VerticalTextAlignment="End" />
+
+            <BoxView
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                HeightRequest="44" 
+                WidthRequest="44" 
+                CornerRadius="22" 
+                BackgroundColor="Black" 
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand"/>
+
+            <Label
+                Grid.Row="0"
+                Grid.RowSpan="2"
+			    Grid.Column="1"
+			    FontFamily="{StaticResource MaterialFontFamily}"
+			    FontSize="35"
+			    HorizontalTextAlignment="Center"
+			    Text="{x:Static fontawesome:AppFlatIcons.Account}"
+			    TextColor="White"
+			    VerticalTextAlignment="Center"/>
+        </Grid>
+
+        <ListView
+            Margin="20,30,20,0"
+            Grid.Row="1"
+            x:Name="listPicked" 
+            ItemsSource="{Binding PickedList}"
+            ItemTapped="OnPickedItemTapped"
+            HasUnevenRows="True"
+            SeparatorColor="Transparent"
+            BackgroundColor="Transparent" 
+            VerticalScrollBarVisibility="Never"
+            IsVisible="{Binding IsPicked}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame 
+                            Margin="0,0,0,20"
+                            Grid.Row="1"
+                            HasShadow="False" 
+                            IsClippedToBounds="True" 
+                            CornerRadius="10"
+                            Padding="10"
+                            VerticalOptions="StartAndExpand" 
+                            BackgroundColor="White" 
+                            BorderColor="#D2D2D2">
+                            <Grid RowSpacing="5" ColumnSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="19"/>
+                                    <RowDefinition Height="23"/>
+                                    <RowDefinition Height="19"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label
+			                        Grid.Row="0"
+			                        Grid.Column="0"
+			                        FontFamily="WorkSansSemiBoldFontFamily"
+			                        FontSize="14"
+			                        HorizontalTextAlignment="Start"
+			                        Text="09/02/22"
+			                        TextColor="{StaticResource FontGrey}"
+			                        VerticalTextAlignment="Center" />
+
+                                <Label
+			                        Grid.Row="1"
+			                        Grid.Column="0"
+			                        FontFamily="WorkSansSemiBoldFontFamily"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="Start"
+			                        Text="Product type"
+			                        TextColor="Black"
+			                        VerticalTextAlignment="End" />
+
+                                <Label
+			                        Grid.Row="2"
+			                        Grid.Column="0"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="Start"
+			                        VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Required" TextColor="{StaticResource FontGreen}" FontFamily="WorkSansRegularFontFamily"/>
+                                            <Span Text="    "/>
+                                            <Span Text="12" TextColor="Black" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+			                        Grid.Row="0"
+			                        Grid.Column="1"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="End"
+			                        VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="ID" FontSize="12" TextColor="{StaticResource FontGrey}" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                            <Span Text="  "/>
+                                            <Span Text="{Binding Id}" TextColor="Black" FontSize="16" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+			                        Grid.Row="1"
+			                        Grid.Column="1"
+			                        FontFamily="WorkSansSemiBoldFontFamily"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="End"
+			                        Text="12"
+			                        TextColor="Black"
+			                        VerticalTextAlignment="End" />
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView
+            Margin="20,30,20,0"
+            Grid.Row="1"
+            x:Name="listPacked" 
+            ItemsSource="{Binding PackedList}"
+            ItemTapped="OnPackedItemTapped"
+            HasUnevenRows="True"
+            SeparatorColor="Transparent"
+            BackgroundColor="Transparent" 
+            VerticalScrollBarVisibility="Never"
+            IsVisible="{Binding IsPicked, Converter={StaticResource InverseBoolConverter}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame 
+                            Margin="0,0,0,20"
+                            Grid.Row="1"
+                            HasShadow="False" 
+                            IsClippedToBounds="True" 
+                            CornerRadius="10"
+                            Padding="10"
+                            VerticalOptions="StartAndExpand" 
+                            BackgroundColor="White" 
+                            BorderColor="#D2D2D2">
+                            <Grid RowSpacing="5" ColumnSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="19"/>
+                                    <RowDefinition Height="23"/>
+                                    <RowDefinition Height="19"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label
+			                        Grid.Row="0"
+			                        Grid.Column="0"
+			                        FontFamily="WorkSansSemiBoldFontFamily"
+			                        FontSize="14"
+			                        HorizontalTextAlignment="Start"
+			                        Text="09/02/22"
+			                        TextColor="{StaticResource FontGrey}"
+			                        VerticalTextAlignment="Center" />
+
+                                <Label
+			                        Grid.Row="1"
+			                        Grid.Column="0"
+			                        FontFamily="WorkSansSemiBoldFontFamily"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="Start"
+			                        Text="Product type"
+			                        TextColor="Black"
+			                        VerticalTextAlignment="End" />
+
+                                <Label
+			                        Grid.Row="2"
+			                        Grid.Column="0"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="Start"
+			                        VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Required" TextColor="{StaticResource FontGreen}" FontFamily="WorkSansRegularFontFamily"/>
+                                            <Span Text="    "/>
+                                            <Span Text="12" TextColor="Black" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+			                        Grid.Row="0"
+			                        Grid.Column="1"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="End"
+			                        VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="ID" FontSize="12" TextColor="{StaticResource FontGrey}" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                            <Span Text="  "/>
+                                            <Span Text="{Binding Id}" TextColor="Black" FontSize="16" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+			                        Grid.Row="1"
+			                        Grid.Column="1"
+			                        FontFamily="WorkSansSemiBoldFontFamily"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="End"
+			                        Text="12"
+			                        TextColor="Black"
+			                        VerticalTextAlignment="End" />
+
+                                <Label
+			                        Grid.Row="2"
+			                        Grid.Column="1"
+			                        FontSize="16"
+			                        HorizontalTextAlignment="End"
+			                        VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Picked" FontSize="16" TextColor="{StaticResource FontBlue}" FontFamily="WorkSansRegularFontFamily"/>
+                                            <Span Text="  "/>
+                                            <Span Text="9" TextColor="Black" FontSize="16" FontFamily="WorkSansSemiBoldFontFamily"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="2" ColumnSpacing="0" BackgroundColor="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0" Spacing="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pick"/>
+                </StackLayout.GestureRecognizers>
+                <Label
+			        FontFamily="{StaticResource MaterialFontFamily}"
+			        FontSize="30"
+                    HorizontalTextAlignment="Center"
+			        HorizontalOptions="CenterAndExpand"
+			        Text="{x:Static fontawesome:AppFlatIcons.Account}"
+			        TextColor="{Binding PickedTabColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pick"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+			        FontFamily="WorkSansRegularFontFamily"
+			        FontSize="14"
+			        HorizontalTextAlignment="Center"
+			        HorizontalOptions="CenterAndExpand"
+			        Text="Pick"
+			        TextColor="{Binding PickedTabColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pick"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Spacing="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pack"/>
+                </StackLayout.GestureRecognizers>
+                <Label
+			        FontFamily="{StaticResource MaterialFontFamily}"
+			        FontSize="30"
+                    HorizontalTextAlignment="Center"
+			        HorizontalOptions="CenterAndExpand"
+			        Text="{x:Static fontawesome:AppFlatIcons.Account}"
+			        TextColor="{Binding PackedTabColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pack"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label
+			        FontFamily="WorkSansRegularFontFamily"
+			        FontSize="14"
+			        HorizontalTextAlignment="Center"
+			        HorizontalOptions="CenterAndExpand"
+			        Text="Pack"
+			        TextColor="{Binding PackedTabColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pack"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
