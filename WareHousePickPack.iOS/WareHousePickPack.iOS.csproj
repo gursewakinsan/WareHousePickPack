@@ -135,4 +135,7 @@
       <Name>WareHousePickPack</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imgShoe.png" />
+  </ItemGroup>
 </Project>

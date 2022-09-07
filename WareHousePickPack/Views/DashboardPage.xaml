@@ -6,7 +6,8 @@
     BackgroundColor="{StaticResource AppBg}"
     xmlns:fontawesome="clr-namespace:WareHousePickPack.Helper"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-	ios:Page.UseSafeArea="True">
+	ios:Page.UseSafeArea="True"
+    NavigationPage.HasNavigationBar="False">
     <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,20,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
@@ -104,7 +105,7 @@
                             Padding="10"
                             VerticalOptions="StartAndExpand" 
                             BackgroundColor="White" 
-                            BorderColor="#D2D2D2">
+                            BorderColor="{StaticResource BorderColorGrey}">
                             <Grid RowSpacing="5" ColumnSpacing="5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="19"/>
@@ -204,7 +205,7 @@
                             Padding="10"
                             VerticalOptions="StartAndExpand" 
                             BackgroundColor="White" 
-                            BorderColor="#D2D2D2">
+                            BorderColor="{StaticResource BorderColorGrey}">
                             <Grid RowSpacing="5" ColumnSpacing="5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="19"/>
@@ -310,7 +311,7 @@
 			        FontSize="30"
                     HorizontalTextAlignment="Center"
 			        HorizontalOptions="CenterAndExpand"
-			        Text="{x:Static fontawesome:AppFlatIcons.Account}"
+			        Text="{x:Static fontawesome:AppFlatIcons.Pick}"
 			        TextColor="{Binding PickedTabColor}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pick"/>
@@ -338,7 +339,7 @@
 			        FontSize="30"
                     HorizontalTextAlignment="Center"
 			        HorizontalOptions="CenterAndExpand"
-			        Text="{x:Static fontawesome:AppFlatIcons.Account}"
+			        Text="{x:Static fontawesome:AppFlatIcons.Pack}"
 			        TextColor="{Binding PackedTabColor}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectedTabCommand}" CommandParameter="Pack"/>

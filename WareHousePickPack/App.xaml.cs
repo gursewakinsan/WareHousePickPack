@@ -7,7 +7,7 @@ namespace WareHousePickPack
         public App()
         {
             InitializeComponent();
-            MainPage = new Views.DashboardPage();
+            MainPage = new NavigationPage(new Views.DashboardPage());
         }
     }
 }

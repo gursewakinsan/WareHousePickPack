@@ -15,14 +15,16 @@ namespace WareHousePickPack.Views
             BindingContext = viewModel = new DashboardPageViewModel(this.Navigation);
         }
 
-        private void OnPickedItemTapped(object sender, ItemTappedEventArgs e)
+        private async void OnPickedItemTapped(object sender, ItemTappedEventArgs e)
         {
             listPicked.SelectedItem = null;
+            await Navigation.PushAsync(new SelectedPickOrderPage());
         }
 
-        private void OnPackedItemTapped(object sender, ItemTappedEventArgs e)
+        private async void OnPackedItemTapped(object sender, ItemTappedEventArgs e)
         {
             listPacked.SelectedItem = null;
+            await Navigation.PushAsync(new SelectedPickOrderPage());
         }
     }
 }

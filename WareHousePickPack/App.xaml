@@ -20,10 +20,11 @@
             <Color x:Key="FontGreen">#08AC8B</Color>
             <Color x:Key="FontBlue">#20A5E1</Color>
             <Color x:Key="FontGrey">#606060</Color>
+            <Color x:Key="BorderColorGrey">#D2D2D2</Color>
             <!--App Colors-->
 
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource AppBg}" />
                 <Setter Property="BarTextColor" Value="Black" />
             </Style>
 
