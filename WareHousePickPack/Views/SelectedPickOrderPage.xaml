@@ -422,6 +422,7 @@
             CornerRadius="10" 
             Margin="20,0,20,0" 
             Padding="0"
+            Command="{Binding PickOrderCommand}"
             FontFamily="PoppinsRegularFontFamily"/>
     </Grid>
 </ContentPage>

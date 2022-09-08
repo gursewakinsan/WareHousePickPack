@@ -24,6 +24,18 @@ namespace WareHousePickPack.ViewModels
 		}
 		#endregion
 
+		#region Pick Order Command.
+		private ICommand pickOrderCommand;
+		public ICommand PickOrderCommand
+		{
+			get => pickOrderCommand ?? (pickOrderCommand = new Command(async () => await ExecutePickOrderCommand()));
+		}
+		private async Task ExecutePickOrderCommand()
+		{
+			await Navigation.PushAsync(new Views.ProcessToDispatchPage());
+		}
+		#endregion
+
 		#region Properties.
 		private List<PickOrderDetails> pickOrderDetailInfo;
 		public List<PickOrderDetails> PickOrderDetailInfo

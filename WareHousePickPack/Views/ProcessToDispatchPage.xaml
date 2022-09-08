@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WareHousePickPack.Views.ProcessToDispatchPage"
+    BackgroundColor="{StaticResource AppBg}"
+    xmlns:fontawesome="clr-namespace:WareHousePickPack.Helper"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+	ios:Page.UseSafeArea="True" NavigationPage.HasNavigationBar="True">
+    <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,10,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0" VerticalScrollBarVisibility="Never">
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="88"/>
+                    <RowDefinition Height="36"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="128"/>
+                    <RowDefinition Height="27"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Frame 
+                    Grid.Row="0" 
+                    Margin="20,0,20,0" 
+                    Padding="20" 
+                    IsClippedToBounds="True" 
+                    HasShadow="False"
+                    CornerRadius="10"
+                    BorderColor="{StaticResource BorderColorGrey}">
+                    <Grid RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="19"/>
+                            <RowDefinition Height="19"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label
+			                Grid.Row="0"
+			                Grid.Column="0"
+			                FontFamily="WorkSansRegularFontFamily"
+			                FontSize="14"
+			                HorizontalTextAlignment="Start"
+			                Text="Order ID"
+			                TextColor="{StaticResource FontGrey}"
+			                VerticalTextAlignment="Center" />
+
+                        <Label
+			                Grid.Row="0"
+			                Grid.Column="1"
+			                FontFamily="WorkSansSemiBoldFontFamily"
+			                FontSize="16"
+			                HorizontalTextAlignment="End"
+			                Text="986524158"
+			                TextColor="{StaticResource FontBlack}"
+			                VerticalTextAlignment="Center" />
+
+                        <Label
+			                Grid.Row="1"
+			                Grid.Column="0"
+			                FontFamily="WorkSansRegularFontFamily"
+			                FontSize="14"
+			                HorizontalTextAlignment="Start"
+			                Text="Order received date"
+			                TextColor="{StaticResource FontGrey}"
+			                VerticalTextAlignment="Center" />
+
+                        <Label
+			                Grid.Row="1"
+			                Grid.Column="1"
+			                FontFamily="WorkSansSemiBoldFontFamily"
+			                FontSize="16"
+			                HorizontalTextAlignment="End"
+			                Text="13/09/22"
+			                TextColor="{StaticResource FontBlack}"
+			                VerticalTextAlignment="Center" />
+                    </Grid>
+                </Frame>
+
+                <Label
+                    Grid.Row="2" 
+                    Margin="28,0,0,0"
+	                FontFamily="WorkSansSemiBoldFontFamily"
+	                FontSize="20"
+	                HorizontalTextAlignment="Start"
+	                Text="Customer details"
+	                TextColor="{StaticResource FontBlack}"
+	                VerticalTextAlignment="Center" />
+
+                <Frame 
+                    Grid.Row="4" 
+                    Margin="20,0,20,0" 
+                    Padding="20,0,20,0" 
+                    IsClippedToBounds="True" 
+                    HasShadow="False"
+                    CornerRadius="10"
+                    BorderColor="{StaticResource BorderColorGrey}">
+                    <StackLayout Spacing="0" VerticalOptions="CenterAndExpand">
+                        <Label
+	                        FontFamily="WorkSansSemiBoldFontFamily"
+	                        FontSize="20"
+	                        Text="John Doe"
+	                        TextColor="{StaticResource FontBlack}"/>
+
+                        <Label
+			                FontFamily="WorkSansRegularFontFamily"
+			                FontSize="16"
+			                HorizontalTextAlignment="Start"
+			                Text="Warwick Road, Maltby,"
+			                TextColor="{StaticResource FontGrey}"
+			                VerticalTextAlignment="Center" />
+
+                        <Label
+			                FontFamily="WorkSansRegularFontFamily"
+			                FontSize="16"
+			                HorizontalTextAlignment="Start"
+			                Text="Rotherham, S66 8EW"
+			                TextColor="{StaticResource FontGrey}"
+			                VerticalTextAlignment="Center" />
+
+                        <Label
+			                FontFamily="WorkSansRegularFontFamily"
+			                FontSize="16"
+			                HorizontalTextAlignment="Start"
+			                Text="S66 8EW"
+			                TextColor="{StaticResource FontGrey}"
+			                VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <Label
+                    Grid.Row="6" 
+                    Margin="28,0,0,0"
+	                FontFamily="WorkSansSemiBoldFontFamily"
+	                FontSize="20"
+	                HorizontalTextAlignment="Start"
+	                Text="Order items"
+	                TextColor="{StaticResource FontBlack}"
+	                VerticalTextAlignment="Center" />
+
+                <StackLayout Grid.Row="8" BindableLayout.ItemsSource="{Binding ProcessToDispatchList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="20,20,20,0" Spacing="24" VerticalOptions="StartAndExpand">
+                                <Frame 
+                                    Padding="10" 
+                                    IsClippedToBounds="True" 
+                                    HasShadow="False"
+                                    CornerRadius="10"
+                                    BorderColor="{StaticResource BorderColorGrey}">
+                                    <Grid ColumnSpacing="10" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="10"/>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="45"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image 
+                                            Grid.Row="0" Grid.Column="0" 
+                                            BackgroundColor="{StaticResource AppBg}" 
+                                            Aspect="AspectFit" Source="imgShoe.png"/>
+
+                                        <StackLayout Grid.Row="0" Grid.Column="1" Spacing="2" VerticalOptions="CenterAndExpand">
+                                            <Label
+	                                            FontFamily="WorkSansSemiBoldFontFamily"
+	                                            FontSize="16"
+	                                            Text="Nike max"
+                                                MaxLines="1"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="TailTruncation"
+	                                            TextColor="{StaticResource FontBlack}" />
+
+                                            <Label
+	                                            FontFamily="WorkSansRegularFontFamily"
+	                                            FontSize="16"
+	                                            Text="Zpc1287"
+                                                MaxLines="1"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="TailTruncation"
+	                                            TextColor="{StaticResource FontGrey}" />
+                                        </StackLayout>
+
+                                        <Label
+                                            Grid.Row="0" Grid.Column="2" 
+	                                        FontFamily="WorkSansSemiBoldFontFamily"
+	                                        FontSize="20"
+	                                        HorizontalTextAlignment="End"
+	                                        Text="$ 420.00"
+	                                        TextColor="{StaticResource FontBlack}"
+	                                        VerticalTextAlignment="Center" />
+
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+	                                        FontFamily="WorkSansRegularFontFamily"
+	                                        FontSize="14"
+	                                        Text="Quantity (Required)"
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Center"
+	                                        TextColor="{StaticResource FontGreen}" />
+
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+	                                        FontFamily="WorkSansSemiBoldFontFamily"
+	                                        FontSize="16"
+	                                        Text="12"
+                                            HorizontalTextAlignment="End"
+                                            VerticalTextAlignment="Center"
+	                                        TextColor="{StaticResource FontBlack}" />
+
+                                        <Label
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+	                                        FontFamily="WorkSansRegularFontFamily"
+	                                        FontSize="14"
+	                                        Text="Quantity (Picked)"
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Center"
+	                                        TextColor="{StaticResource FontBlue}" />
+
+                                        <Label
+                                            Grid.Row="4"
+                                            Grid.Column="2"
+	                                        FontFamily="WorkSansSemiBoldFontFamily"
+	                                        FontSize="16"
+	                                        Text="12"
+                                            HorizontalTextAlignment="End"
+                                            VerticalTextAlignment="Center"
+	                                        TextColor="{StaticResource FontBlack}" />
+                                    </Grid>
+                                </Frame>
+
+                                <Grid RowSpacing="0" HeightRequest="24" ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="24"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Padding="0" 
+                                        IsClippedToBounds="True" 
+                                        HasShadow="False"
+                                        BackgroundColor="{StaticResource FontBlue}">
+                                        <Label 
+			                                FontFamily="{StaticResource MaterialFontFamily}"
+			                                FontSize="18" Padding="0"
+			                                Text="{x:Static fontawesome:AppFlatIcons.Check}"
+			                                TextColor="White" 
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center"/>
+                                    </Frame>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+			                            FontFamily="WorkSansRegularFontFamily"
+			                            FontSize="14"
+			                            HorizontalTextAlignment="Start"
+			                            Text="Quality check"
+			                            TextColor="{StaticResource FontGrey}"
+			                            VerticalTextAlignment="Center" />
+                                </Grid>
+                            </StackLayout>
+                            
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+                <Label
+                    Grid.Row="9"
+			        FontSize="14"
+                    Margin="20"
+                    LineHeight="1.2"
+			        HorizontalTextAlignment="Start"
+			        VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span 
+                                Text="Note: " 
+                                TextColor="Black" 
+                                FontFamily="WorkSansSemiBoldFontFamily"/>
+                            
+                            <Span 
+                                Text="In this POC, there is no process to handle the failure of quality check" 
+                                TextColor="Black" FontFamily="WorkSansRegularFontFamily"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </ScrollView>
+        
+        <Button 
+            Grid.Row="1" 
+            Text="Process to dispatch"
+            FontSize="16"
+            TextColor="White"
+            BackgroundColor="#20A5E1" 
+            CornerRadius="10" 
+            Margin="20,0,20,0" 
+            Padding="0"
+            Command="{Binding ProcessToDispatchCommand}"
+            FontFamily="PoppinsRegularFontFamily"/>
+    </Grid>
+</ContentPage>
