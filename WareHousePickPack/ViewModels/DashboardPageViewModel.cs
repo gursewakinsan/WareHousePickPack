@@ -1,8 +1,10 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using Xamarin.Forms;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using WareHousePickPack.Helper;
 using System.Collections.Generic;
+using WareHousePickPack.Interfaces;
 
 namespace WareHousePickPack.ViewModels
 {
@@ -12,7 +14,6 @@ namespace WareHousePickPack.ViewModels
 		public DashboardPageViewModel(INavigation navigation)
 		{
 			Navigation = navigation;
-			GetPickedDataCommand.Execute(null);
 		}
 		#endregion
 
@@ -24,13 +25,17 @@ namespace WareHousePickPack.ViewModels
 		}
 		private async Task ExecuteGetPickedDataCommand()
 		{
+			IsEmptyListMessage = false;
 			IsPicked = true;
 			PickedTabColor = Color.Black;
 			PackedTabColor = Color.FromHex("#B5B5B5");
-			var pickList = new List<Picked>();
-			for (int i = 0; i < 10; i++)
-				pickList.Add(new Picked() { Id = $"98652415{i}" });
-			PickedList = pickList;
+			var pickItems = DependencyService.Get<ISQLite>().GetAll();
+			PickItems = pickItems.Where(x=>x.IsPick ==false).ToList();
+			if (PickItems.Count == 0)
+			{
+				IsEmptyListMessage = true;
+				EmptyListMessage = "No item found for pick.";
+			}
 			await Task.CompletedTask;
 		}
 		#endregion
@@ -43,13 +48,17 @@ namespace WareHousePickPack.ViewModels
 		}
 		private async Task ExecuteGetPackedDataCommand()
 		{
+			IsEmptyListMessage = false;
 			IsPicked = false;
 			PickedTabColor = Color.FromHex("#B5B5B5");
 			PackedTabColor = Color.Black;
-			var packedList = new List<Packed>();
-			for (int i = 0; i < 10; i++)
-				packedList.Add(new Packed() { Id = $"98652412{i}" });
-			PackedList = packedList;
+			var packItems = DependencyService.Get<ISQLite>().GetAll();
+			PackItems = packItems.Where(x => x.IsPick == true).ToList();
+			if (PackItems.Count == 0)
+			{
+				IsEmptyListMessage = true;
+				EmptyListMessage = "No item found for pack.";
+			}
 			await Task.CompletedTask;
 		}
 		#endregion
@@ -75,25 +84,25 @@ namespace WareHousePickPack.ViewModels
 		#endregion
 
 		#region Properties.
-		private List<Picked> pickedList;
-		public List<Picked> PickedList
+		private List<Models.PickPack> pickItems;
+		public List<Models.PickPack> PickItems
 		{
-			get => pickedList;
+			get => pickItems;
 			set
 			{
-				pickedList = value;
-				OnPropertyChanged("PickedList");
+				pickItems = value;
+				OnPropertyChanged("PickItems");
 			}
 		}
 
-		private List<Packed> packedList;
-		public List<Packed> PackedList
+		private List<Models.PickPack> packItems;
+		public List<Models.PickPack> PackItems
 		{
-			get => packedList;
+			get => packItems;
 			set
 			{
-				packedList = value;
-				OnPropertyChanged("PackedList");
+				packItems = value;
+				OnPropertyChanged("PackItems");
 			}
 		}
 
@@ -129,18 +138,31 @@ namespace WareHousePickPack.ViewModels
 				OnPropertyChanged("PackedTabColor");
 			}
 		}
+
+		private bool isEmptyListMessage =false;
+		public bool IsEmptyListMessage
+		{
+			get => isEmptyListMessage;
+			set
+			{
+				isEmptyListMessage = value;
+				OnPropertyChanged("IsEmptyListMessage");
+			}
+		}
+
+		private string emptyListMessage;
+		public string EmptyListMessage
+		{
+			get => emptyListMessage;
+			set
+			{
+				emptyListMessage = value;
+				OnPropertyChanged("EmptyListMessage");
+			}
+		}
 		#endregion
 	}
 }
 
-public class Picked
-{
-    public string Id { get; set; }
-}
-
-public class Packed
-{
-	public string Id { get; set; }
-}
 
 

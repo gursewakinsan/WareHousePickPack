@@ -297,6 +297,16 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <Label 
+            Grid.Row="1"
+            TextColor="Red"
+            FontSize="20"
+            Text="{Binding EmptyListMessage}"
+            IsVisible="{Binding IsEmptyListMessage}"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            FontFamily="WorkSansSemiBoldFontFamily"/>
+
         <Grid Grid.Row="2" ColumnSpacing="0" BackgroundColor="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

@@ -14,7 +14,11 @@ namespace WareHousePickPack.Views
             NavigationPage.SetBackButtonTitle(this, "");
             BindingContext = viewModel = new DashboardPageViewModel(this.Navigation);
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.GetPickedDataCommand.Execute(null);
+        }
         private async void OnPickedItemTapped(object sender, ItemTappedEventArgs e)
         {
             listPicked.SelectedItem = null;
