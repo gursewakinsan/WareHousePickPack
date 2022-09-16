@@ -50,6 +50,17 @@ namespace WareHousePickPack.ViewModels
 				OnPropertyChanged("SelectedOrderForDispatch");
 			}
 		}
+
+		private bool isQualityCheck = false;
+		public bool IsQualityCheck
+		{
+			get => isQualityCheck;
+			set
+			{
+				isQualityCheck = value;
+				OnPropertyChanged("IsQualityCheck");
+			}
+		}
 		#endregion
 	}
 }

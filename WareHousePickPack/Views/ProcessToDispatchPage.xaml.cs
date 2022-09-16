@@ -7,7 +7,11 @@ namespace WareHousePickPack.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProcessToDispatchPage : ContentPage
     {
+        #region Variables.
         ProcessToDispatchPageViewModel viewModel;
+        #endregion
+
+        #region Constructor.
         public ProcessToDispatchPage(Models.Order selectedOrderForDispatch)
         {
             InitializeComponent();
@@ -17,5 +21,6 @@ namespace WareHousePickPack.Views
             viewModel.ProcessToDispatchList = new System.Collections.ObjectModel.ObservableCollection<Models.Order>();
             viewModel.ProcessToDispatchList.Add(selectedOrderForDispatch);
         }
+        #endregion
     }
 }

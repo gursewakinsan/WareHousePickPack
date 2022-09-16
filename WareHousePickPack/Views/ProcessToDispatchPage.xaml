@@ -257,13 +257,13 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="24"/>
                                     </Grid.RowDefinitions>
+                                        
                                     <Frame
-                                        Grid.Row="0"
-                                        Grid.Column="0"
                                         Padding="0" 
                                         IsClippedToBounds="True" 
                                         HasShadow="False"
                                         BackgroundColor="{StaticResource FontBlue}">
+
                                         <Label 
 			                                FontFamily="{StaticResource MaterialFontFamily}"
 			                                FontSize="18" Padding="0"
@@ -272,6 +272,7 @@
                                             HorizontalTextAlignment="Center"
                                             VerticalTextAlignment="Center"/>
                                     </Frame>
+
                                     <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
@@ -280,7 +281,7 @@
 			                            HorizontalTextAlignment="Start"
 			                            Text="Quality check"
 			                            TextColor="{StaticResource FontGrey}"
-			                            VerticalTextAlignment="Center" />
+			                            VerticalTextAlignment="Center"/>
                                 </Grid>
                             </StackLayout>
                             

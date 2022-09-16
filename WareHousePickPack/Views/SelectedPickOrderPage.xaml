@@ -301,7 +301,11 @@
 			                        Text="{x:Static fontawesome:AppFlatIcons.TrashCanOutline}"
 			                        TextColor="Black" 
                                     HorizontalTextAlignment="Center"
-                                    VerticalTextAlignment="Center"/>
+                                    VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClearButtonTapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
 
                                 <Label
                                     Grid.Row="2"
@@ -394,7 +398,6 @@
                                     Grid.ColumnSpan="4"
 	                                FontFamily="WorkSansSemiBoldFontFamily"
 	                                FontSize="16"
-	                                Text="$ 420.00"
                                     HorizontalTextAlignment="End"
                                     VerticalTextAlignment="Center"
 	                                TextColor="{StaticResource FontBlack}">
@@ -422,6 +425,7 @@
             CornerRadius="10" 
             Margin="20,0,20,0" 
             Padding="0"
+            x:Name="btnPickOrder"
             Command="{Binding PickOrderCommand}"
             FontFamily="PoppinsRegularFontFamily"/>
     </Grid>

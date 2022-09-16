@@ -5,6 +5,7 @@
         public const string Pick = "\U000f0a53";
         public const string Pack = "\U000f03d6";
         public const string Check = "\U000f012c";
+        public const string CheckboxBlankOutline = "\U000f0131";
         public const string Account = "\U000f0004";
         public const string ChevronLeft = "\U000f0141";
         public const string ChevronRight = "\U000f0142";
