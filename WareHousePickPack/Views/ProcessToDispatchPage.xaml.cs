@@ -8,11 +8,14 @@ namespace WareHousePickPack.Views
     public partial class ProcessToDispatchPage : ContentPage
     {
         ProcessToDispatchPageViewModel viewModel;
-        public ProcessToDispatchPage()
+        public ProcessToDispatchPage(Models.Order selectedOrderForDispatch)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             BindingContext = viewModel = new ProcessToDispatchPageViewModel(this.Navigation);
+            viewModel.SelectedOrderForDispatch = selectedOrderForDispatch;
+            viewModel.ProcessToDispatchList = new System.Collections.ObjectModel.ObservableCollection<Models.Order>();
+            viewModel.ProcessToDispatchList.Add(selectedOrderForDispatch);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using Xamarin.Forms;
 using System.Windows.Input;
 using System.Threading.Tasks;
-using WareHousePickPack.Helper;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WareHousePickPack.ViewModels
 {
@@ -12,15 +12,6 @@ namespace WareHousePickPack.ViewModels
 		public SelectedPickOrderPageViewModel(INavigation navigation)
 		{
 			Navigation = navigation;
-			PickOrderDetailInfo = new List<PickOrderDetails>();
-			for (int i = 1; i < 5; i++)
-				PickOrderDetailInfo.Add(new PickOrderDetails()
-				{
-					Id = i,
-					BinNumber = $"361287{i}",
-					TotalQuantity = 12,
-					PriceUnit = 35
-				});
 		}
 		#endregion
 
@@ -32,13 +23,14 @@ namespace WareHousePickPack.ViewModels
 		}
 		private async Task ExecutePickOrderCommand()
 		{
-			await Navigation.PushAsync(new Views.ProcessToDispatchPage());
+			Helper.Helper.PickOrPackOrderItems.FirstOrDefault(x => x.Number == SelectedPickOrderDetailInfo.Number).IsPicked = true;
+			await Navigation.PopToRootAsync();
 		}
 		#endregion
 
 		#region Properties.
-		private List<PickOrderDetails> pickOrderDetailInfo;
-		public List<PickOrderDetails> PickOrderDetailInfo
+		private ObservableCollection<Models.Order> pickOrderDetailInfo;
+		public ObservableCollection<Models.Order> PickOrderDetailInfo
 		{
 			get => pickOrderDetailInfo;
 			set
@@ -47,37 +39,17 @@ namespace WareHousePickPack.ViewModels
 				OnPropertyChanged("PickOrderDetailInfo");
 			}
 		}
+
+		private Models.Order selectedPickOrderDetailInfo;
+		public Models.Order SelectedPickOrderDetailInfo
+		{
+			get => selectedPickOrderDetailInfo;
+			set
+			{
+				selectedPickOrderDetailInfo = value;
+				OnPropertyChanged("SelectedPickOrderDetailInfo");
+			}
+		}
 		#endregion
-	}
-}
-
-public class PickOrderDetails : WareHousePickPack.Models.BaseModel
-{
-    public int Id { get; set; }
-    public string BinNumber { get; set; }
-
-	private int quantity;
-	public int Quantity
-	{
-		get => quantity;
-		set
-		{
-			quantity = value;
-			OnPropertyChanged("Quantity");
-		}
-	}
-
-	public int TotalQuantity { get; set; }
-    public int PriceUnit { get; set; }
-	
-	private int total;
-	public int Total
-	{
-		get => total;
-		set
-		{
-			total = value;
-			OnPropertyChanged("Total");
-		}
 	}
 }

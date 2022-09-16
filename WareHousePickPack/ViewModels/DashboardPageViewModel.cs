@@ -2,9 +2,10 @@
 using Xamarin.Forms;
 using System.Windows.Input;
 using System.Threading.Tasks;
-using WareHousePickPack.Helper;
+using WareHousePickPack.Service;
 using System.Collections.Generic;
 using WareHousePickPack.Interfaces;
+using System.Collections.ObjectModel;
 
 namespace WareHousePickPack.ViewModels
 {
@@ -14,47 +15,64 @@ namespace WareHousePickPack.ViewModels
 		public DashboardPageViewModel(INavigation navigation)
 		{
 			Navigation = navigation;
+			IsPicked = true;
 		}
 		#endregion
 
-		#region Get Picked Data Command.
-		private ICommand getPickedDataCommand;
-		public ICommand GetPickedDataCommand
+		#region Get All Warehouse Command.
+		private ICommand getAllWarehouseCommand;
+		public ICommand GetAllWarehouseCommand
 		{
-			get => getPickedDataCommand ?? (getPickedDataCommand = new Command(async () => await ExecuteGetPickedDataCommand()));
+			get => getAllWarehouseCommand ?? (getAllWarehouseCommand = new Command(() => ExecuteGetAllWarehouseCommand()));
 		}
-		private async Task ExecuteGetPickedDataCommand()
+		private void ExecuteGetAllWarehouseCommand()
+		{
+			IOrderService orderService = new OrderService();
+			Helper.Helper.PickOrPackOrderItems = orderService.GetAllOrderItems();
+
+			IWarehouseService warehouseService = new WarehouseService();
+			WarehouseList = warehouseService.GetAllWarehouse();
+			SelectedWarehouse = WarehouseList[0];
+		}
+		#endregion
+
+		#region Get Pick Order Items Command.
+		private ICommand getPickOrderItemsCommand;
+		public ICommand GetPickOrderItemsCommand
+		{
+			get => getPickOrderItemsCommand ?? (getPickOrderItemsCommand = new Command( () =>  ExecuteGetPickOrderItemsCommand()));
+		}
+		private void ExecuteGetPickOrderItemsCommand()
 		{
 			IsEmptyListMessage = false;
 			IsPicked = true;
 			PickedTabColor = Color.Black;
 			PackedTabColor = Color.FromHex("#B5B5B5");
-			var pickItems = DependencyService.Get<ISQLite>().GetAll();
-			PickItems = pickItems.Where(x=>x.IsPick ==false).ToList();
-			if (PickItems.Count == 0)
+			var pickOrderItems = Helper.Helper.PickOrPackOrderItems.Where(x => x.IsPicked == false && x.WarehouseId == SelectedWarehouse.Id).ToList();
+			PickOrderItems = new ObservableCollection<Models.Order>(pickOrderItems);
+			if (PickOrderItems.Count == 0)
 			{
 				IsEmptyListMessage = true;
-				EmptyListMessage = "No item found for pick.";
+				EmptyListMessage = $"No item found for pick.{System.Environment.NewLine}Please click here to reload the data.";
 			}
-			await Task.CompletedTask;
 		}
 		#endregion
 
-		#region Get Packed Data Command.
-		private ICommand getPackedDataCommand;
-		public ICommand GetPackedDataCommand
+		#region Get Pack Order Items Command.
+		private ICommand getPackOrderItemsCommand;
+		public ICommand GetPackOrderItemsCommand
 		{
-			get => getPackedDataCommand ?? (getPackedDataCommand = new Command(async () => await ExecuteGetPackedDataCommand()));
+			get => getPackOrderItemsCommand ?? (getPackOrderItemsCommand = new Command(async () => await ExecuteGetPackOrderItemsCommand()));
 		}
-		private async Task ExecuteGetPackedDataCommand()
+		private async Task ExecuteGetPackOrderItemsCommand()
 		{
 			IsEmptyListMessage = false;
 			IsPicked = false;
 			PickedTabColor = Color.FromHex("#B5B5B5");
 			PackedTabColor = Color.Black;
-			var packItems = DependencyService.Get<ISQLite>().GetAll();
-			PackItems = packItems.Where(x => x.IsPick == true).ToList();
-			if (PackItems.Count == 0)
+			var packOrderItems = Helper.Helper.PickOrPackOrderItems.Where(x => x.IsPicked == true && x.IsPacked == false && x.WarehouseId == SelectedWarehouse.Id).ToList();
+			PackOrderItems = new ObservableCollection<Models.Order>(packOrderItems);
+			if (PackOrderItems.Count == 0)
 			{
 				IsEmptyListMessage = true;
 				EmptyListMessage = "No item found for pack.";
@@ -74,35 +92,71 @@ namespace WareHousePickPack.ViewModels
             switch (selectedTab)
             {
 				case "Pick":
-					GetPickedDataCommand.Execute(null);
+					GetPickOrderItemsCommand.Execute(null);
 					break;
 				case "Pack":
-					GetPackedDataCommand.Execute(null);
+					GetPackOrderItemsCommand.Execute(null);
 					break;
 			}
         }
 		#endregion
 
-		#region Properties.
-		private List<Models.PickPack> pickItems;
-		public List<Models.PickPack> PickItems
+		#region Reload Data Command.
+		private ICommand reloadDataCommand;
+		public ICommand ReloadDataCommand
 		{
-			get => pickItems;
+			get => reloadDataCommand ?? (reloadDataCommand = new Command(() => ExecuteReloadDataCommand()));
+		}
+		private void ExecuteReloadDataCommand()
+		{
+			IOrderService orderService = new OrderService();
+			Helper.Helper.PickOrPackOrderItems = orderService.GetAllOrderItems();
+			GetPickOrderItemsCommand.Execute(null);
+		}
+		#endregion
+
+		#region Properties.
+		private List<Models.Warehouse> warehouseList;
+		public List<Models.Warehouse> WarehouseList
+		{
+			get => warehouseList;
 			set
 			{
-				pickItems = value;
-				OnPropertyChanged("PickItems");
+				warehouseList = value;
+				OnPropertyChanged("WarehouseList");
 			}
 		}
 
-		private List<Models.PickPack> packItems;
-		public List<Models.PickPack> PackItems
+		private Models.Warehouse selectedWarehouse;
+		public Models.Warehouse SelectedWarehouse
 		{
-			get => packItems;
+			get => selectedWarehouse;
 			set
 			{
-				packItems = value;
-				OnPropertyChanged("PackItems");
+				selectedWarehouse = value;
+				OnPropertyChanged("SelectedWarehouse");
+			}
+		}
+
+		private ObservableCollection<Models.Order> pickOrderItems;
+		public ObservableCollection<Models.Order> PickOrderItems
+		{
+			get => pickOrderItems;
+			set
+			{
+				pickOrderItems = value;
+				OnPropertyChanged("PickOrderItems");
+			}
+		}
+
+		private ObservableCollection<Models.Order> packOrderItems;
+		public ObservableCollection<Models.Order> PackOrderItems
+		{
+			get => packOrderItems;
+			set
+			{
+				packOrderItems = value;
+				OnPropertyChanged("PackOrderItems");
 			}
 		}
 

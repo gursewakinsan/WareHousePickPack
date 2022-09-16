@@ -7,19 +7,27 @@ namespace WareHousePickPack.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SelectedPickOrderPage : ContentPage
     {
+        #region Variables.
         SelectedPickOrderPageViewModel viewModel;
-        public SelectedPickOrderPage()
+        #endregion
+
+        #region Constructor.
+        public SelectedPickOrderPage(Models.Order selectedOrder)
         {
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             BindingContext = viewModel = new SelectedPickOrderPageViewModel(this.Navigation);
+            viewModel.PickOrderDetailInfo = new System.Collections.ObjectModel.ObservableCollection<Models.Order>();
+            viewModel.PickOrderDetailInfo.Add(selectedOrder);
+            viewModel.SelectedPickOrderDetailInfo = selectedOrder;
         }
+        #endregion
 
-
+        #region On Minus Tapped.
         private void OnMinusBoxViewTapped(object sender, System.EventArgs e)
         {
             BoxView control = (BoxView)sender;
-            PickOrderDetails pick = control.BindingContext as PickOrderDetails;
+            Models.Order pick = control.BindingContext as Models.Order;
             if (pick.Quantity > 0)
             {
                 pick.Quantity -= 1;
@@ -30,18 +38,20 @@ namespace WareHousePickPack.Views
         private void OnMinusLabelTapped(object sender, System.EventArgs e)
         {
             Label control = (Label)sender;
-            PickOrderDetails pick = control.BindingContext as PickOrderDetails;
+            Models.Order pick = control.BindingContext as Models.Order;
             if (pick.Quantity > 0)
             {
                 pick.Quantity -= 1;
                 pick.Total -= pick.PriceUnit;
             }
         }
+        #endregion
 
+        #region On Plus Tapped.
         private void OnPlusBoxViewTapped(object sender, System.EventArgs e)
         {
             BoxView control = (BoxView)sender;
-            PickOrderDetails pick = control.BindingContext as PickOrderDetails;
+            Models.Order pick = control.BindingContext as Models.Order;
             if (pick.Quantity < pick.TotalQuantity)
             {
                 pick.Quantity += 1;
@@ -52,12 +62,13 @@ namespace WareHousePickPack.Views
         private void OnPlusLabelTapped(object sender, System.EventArgs e)
         {
             Label control = (Label)sender;
-            PickOrderDetails pick = control.BindingContext as PickOrderDetails;
+            Models.Order pick = control.BindingContext as Models.Order;
             if (pick.Quantity < pick.TotalQuantity)
             {
                 pick.Quantity += 1;
                 pick.Total += pick.PriceUnit;
             }
         }
+        #endregion
     }
 }
