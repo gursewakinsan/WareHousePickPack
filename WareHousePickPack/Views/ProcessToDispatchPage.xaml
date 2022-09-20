@@ -189,7 +189,7 @@
                                             <Label
 	                                            FontFamily="WorkSansRegularFontFamily"
 	                                            FontSize="16"
-	                                            Text="Zpc1287"
+	                                            Text="{Binding ProductDescription}"
                                                 MaxLines="1"
                                                 HorizontalOptions="StartAndExpand"
                                                 LineBreakMode="TailTruncation"

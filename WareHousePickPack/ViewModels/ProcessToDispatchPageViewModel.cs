@@ -29,8 +29,8 @@ namespace WareHousePickPack.ViewModels
 		#endregion
 
 		#region Properties.
-		private ObservableCollection<Models.Order> processToDispatchList;
-		public ObservableCollection<Models.Order> ProcessToDispatchList
+		private ObservableCollection<Models.Product> processToDispatchList;
+		public ObservableCollection<Models.Product> ProcessToDispatchList
 		{
 			get => processToDispatchList;
 			set

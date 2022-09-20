@@ -14,5 +14,6 @@
         public const string Plus = "\U000f0415";
         public const string Minus = "\U000f0374";
         public const string TrashCanOutline = "\U000f0a7a";
+        public const string Close = "\U000f0156";
     }
 }

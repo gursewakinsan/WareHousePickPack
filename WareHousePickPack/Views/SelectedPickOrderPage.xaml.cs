@@ -17,8 +17,7 @@ namespace WareHousePickPack.Views
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             BindingContext = viewModel = new SelectedPickOrderPageViewModel(this.Navigation);
-            viewModel.PickOrderDetailInfo = new System.Collections.ObjectModel.ObservableCollection<Models.Order>();
-            viewModel.PickOrderDetailInfo.Add(selectedOrder);
+            viewModel.PickOrderDetailInfo = new System.Collections.ObjectModel.ObservableCollection<Models.Product>(selectedOrder.Products);
             viewModel.SelectedPickOrderDetailInfo = selectedOrder;
             btnPickOrder.IsEnabled = false;
         }
@@ -28,24 +27,25 @@ namespace WareHousePickPack.Views
         private void OnMinusBoxViewTapped(object sender, System.EventArgs e)
         {
             BoxView control = (BoxView)sender;
-            Models.Order pick = control.BindingContext as Models.Order;
-            if (pick.Quantity > 0)
-            {
-                pick.Quantity -= 1;
-                pick.Total -= pick.PriceUnit;
-            }
-            if (btnPickOrder.IsEnabled)
-                btnPickOrder.IsEnabled = false;
+            Models.Product pick = control.BindingContext as Models.Product;
+            OnMinusButtonClicked(pick);
         }
 
         private void OnMinusLabelTapped(object sender, System.EventArgs e)
         {
             Label control = (Label)sender;
-            Models.Order pick = control.BindingContext as Models.Order;
+            Models.Product pick = control.BindingContext as Models.Product;
+            OnMinusButtonClicked(pick);
+        }
+
+        private void OnMinusButtonClicked(Models.Product pick)
+        {
             if (pick.Quantity > 0)
             {
                 pick.Quantity -= 1;
                 pick.Total -= pick.PriceUnit;
+                viewModel.TotalQuantity -= 1;
+                viewModel.TotalPrice -= pick.PriceUnit;
             }
             if (btnPickOrder.IsEnabled)
                 btnPickOrder.IsEnabled = false;
@@ -56,28 +56,27 @@ namespace WareHousePickPack.Views
         private void OnPlusBoxViewTapped(object sender, System.EventArgs e)
         {
             BoxView control = (BoxView)sender;
-            Models.Order pick = control.BindingContext as Models.Order;
-            if (pick.Quantity < pick.TotalQuantity)
-            {
-                pick.Quantity += 1;
-                pick.Total += pick.PriceUnit;
-            }
-            if (pick.Quantity == pick.TotalQuantity)
-                btnPickOrder.IsEnabled = true;
-            else
-                btnPickOrder.IsEnabled = false;
+            Models.Product pick = control.BindingContext as Models.Product;
+            OnPlusButtonClicked(pick);
         }
 
         private void OnPlusLabelTapped(object sender, System.EventArgs e)
         {
             Label control = (Label)sender;
-            Models.Order pick = control.BindingContext as Models.Order;
+            Models.Product pick = control.BindingContext as Models.Product;
+            OnPlusButtonClicked(pick);
+        }
+
+        private void OnPlusButtonClicked(Models.Product pick)
+        {
             if (pick.Quantity < pick.TotalQuantity)
             {
                 pick.Quantity += 1;
                 pick.Total += pick.PriceUnit;
+                viewModel.TotalQuantity += 1;
+                viewModel.TotalPrice += pick.PriceUnit;
             }
-            if (pick.Quantity == pick.TotalQuantity)
+            if (viewModel.SelectedPickOrderDetailInfo.TotalQuantity == viewModel.TotalQuantity)
                 btnPickOrder.IsEnabled = true;
             else
                 btnPickOrder.IsEnabled = false;
@@ -85,12 +84,26 @@ namespace WareHousePickPack.Views
         #endregion
 
         #region On Clear Button Tapped.
-        private void OnClearButtonTapped(object sender, System.EventArgs e)
+        private void OnClearBoxTapped(object sender, System.EventArgs e)
+        {
+            BoxView control = (BoxView)sender;
+            Models.Product pick = control.BindingContext as Models.Product;
+            OnClearButtonClicked(pick);
+        }
+
+        private void OnClearLabelTapped(object sender, System.EventArgs e)
         {
             Label control = (Label)sender;
-            Models.Order pick = control.BindingContext as Models.Order;
+            Models.Product pick = control.BindingContext as Models.Product;
+            OnClearButtonClicked(pick);
+        }
+
+        private void OnClearButtonClicked(Models.Product pick)
+        {
             if (pick.Quantity > 0)
             {
+                viewModel.TotalQuantity -= pick.Quantity;
+                viewModel.TotalPrice -= pick.Total;
                 pick.Quantity = 0;
                 pick.Total = 0;
             }

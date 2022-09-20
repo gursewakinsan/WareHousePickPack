@@ -29,8 +29,8 @@ namespace WareHousePickPack.ViewModels
 		#endregion
 
 		#region Properties.
-		private ObservableCollection<Models.Order> pickOrderDetailInfo;
-		public ObservableCollection<Models.Order> PickOrderDetailInfo
+		private ObservableCollection<Models.Product> pickOrderDetailInfo;
+		public ObservableCollection<Models.Product> PickOrderDetailInfo
 		{
 			get => pickOrderDetailInfo;
 			set
@@ -50,6 +50,19 @@ namespace WareHousePickPack.ViewModels
 				OnPropertyChanged("SelectedPickOrderDetailInfo");
 			}
 		}
+
+		private int totalPrice;
+		public int TotalPrice
+		{
+			get => totalPrice;
+			set
+			{
+				totalPrice = value;
+				OnPropertyChanged("TotalPrice");
+			}
+		}
+
+		public int TotalQuantity { get; set; }
 		#endregion
 	}
 }

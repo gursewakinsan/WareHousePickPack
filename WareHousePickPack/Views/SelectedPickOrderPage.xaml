@@ -156,263 +156,313 @@
 	        VerticalTextAlignment="Center" />
 
         <ScrollView Grid.Row="5" VerticalScrollBarVisibility="Never" Padding="0,0,0,20">
-            <StackLayout BindableLayout.ItemsSource="{Binding PickOrderDetailInfo}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="20,20,20,0"
-                            Padding="10" 
-                            IsClippedToBounds="True" 
-                            HasShadow="False"
-                            CornerRadius="10"
-                            BorderColor="{StaticResource BorderColorGrey}">
-                            <Grid ColumnSpacing="7" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="45"/>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="20"/>
-                                    <RowDefinition Height="5"/>
-                                    <RowDefinition Height="20"/>
-                                    <RowDefinition Height="5"/>
-                                    <RowDefinition Height="20"/>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="1"/>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="20"/>
-                                    <RowDefinition Height="5"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="45"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="75"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="24"/>
-                                    <ColumnDefinition Width="24"/>
-                                </Grid.ColumnDefinitions>
-                                <Image 
-                                    Grid.Row="0" Grid.Column="0" 
-                                    BackgroundColor="{StaticResource AppBg}" 
-                                    Aspect="AspectFit" Source="{Binding Image}"/>
+            <StackLayout Spacing="0">
+                <StackLayout BindableLayout.ItemsSource="{Binding PickOrderDetailInfo}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="20,20,20,0"
+                                Padding="10" 
+                                IsClippedToBounds="True" 
+                                HasShadow="False"
+                                CornerRadius="10"
+                                BorderColor="{StaticResource BorderColorGrey}">
+                                <Grid ColumnSpacing="7" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="45"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="5"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="5"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="45"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="24"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image 
+                                        Grid.Row="0" Grid.Column="0" 
+                                        BackgroundColor="{StaticResource AppBg}" 
+                                        Aspect="AspectFit" Source="{Binding Image}"/>
 
-                                <StackLayout Grid.Row="0" Grid.Column="1" Spacing="2" VerticalOptions="CenterAndExpand">
+                                    <StackLayout Grid.Row="0" Grid.Column="1" Spacing="2" VerticalOptions="CenterAndExpand">
+                                        <Label
+	                                        FontFamily="WorkSansSemiBoldFontFamily"
+	                                        FontSize="16"
+	                                        Text="{Binding Name}"
+                                            MaxLines="1"
+                                            HorizontalOptions="StartAndExpand"
+                                            LineBreakMode="TailTruncation"
+	                                        TextColor="{StaticResource FontBlack}" />
+
+                                        <Label
+	                                        FontFamily="WorkSansRegularFontFamily"
+	                                        FontSize="16"
+	                                        Text="{Binding ProductDescription}"
+                                            MaxLines="1"
+                                            HorizontalOptions="StartAndExpand"
+                                            LineBreakMode="TailTruncation"
+	                                        TextColor="{StaticResource FontGrey}" />
+                                    </StackLayout>
+
+                                    <Frame 
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Padding="0,2,0,2" 
+                                        IsClippedToBounds="True" 
+                                        HasShadow="False"
+                                        CornerRadius="10"
+                                        BackgroundColor="#9CFFA6"
+                                        VerticalOptions="CenterAndExpand"
+                                        BorderColor="#00A811">
+                                        <Label
+	                                        FontFamily="WorkSansRegularFontFamily"
+	                                        FontSize="12"
+	                                        Text="In stock"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+	                                        TextColor="#00A811" />
+                                    </Frame>
+
+                                    <BoxView 
+                                        Grid.Row="0" 
+                                        Grid.Column="3" 
+                                        HeightRequest="24"
+                                        WidthRequest="24"
+                                        CornerRadius="12"
+                                        BackgroundColor="#ECECEC"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand">
+                                        <BoxView.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnMinusBoxViewTapped"/>
+                                        </BoxView.GestureRecognizers>
+                                    </BoxView>
+
+                                    <Label 
+                                        Grid.Row="0" 
+                                        Grid.Column="3"
+			                            FontFamily="{StaticResource MaterialFontFamily}"
+			                            FontSize="15" Padding="0"
+			                            Text="{x:Static fontawesome:AppFlatIcons.Minus}"
+			                            TextColor="Black" 
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnMinusLabelTapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
                                     <Label
+                                        Grid.Row="0" 
+                                        Grid.Column="4"
+	                                    FontFamily="WorkSansRegularFontFamily"
+	                                    FontSize="18"
+	                                    HorizontalTextAlignment="Center"
+	                                    Text="{Binding Quantity}"
+	                                    TextColor="{StaticResource FontBlack}"
+	                                    VerticalTextAlignment="Center" />
+
+                                    <BoxView 
+                                        Grid.Row="0" 
+                                        Grid.Column="5" 
+                                        HeightRequest="24"
+                                        WidthRequest="24"
+                                        CornerRadius="12"
+                                        BackgroundColor="#FFA200"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand">
+                                        <BoxView.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnPlusBoxViewTapped"/>
+                                        </BoxView.GestureRecognizers>
+                                    </BoxView>
+
+                                    <Label 
+                                        Grid.Row="0" 
+                                        Grid.Column="5"
+			                            FontFamily="{StaticResource MaterialFontFamily}"
+			                            FontSize="15" Padding="0"
+			                            Text="{x:Static fontawesome:AppFlatIcons.Plus}"
+			                            TextColor="Black" 
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnPlusLabelTapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <BoxView 
+                                        Grid.Row="0" 
+                                        Grid.Column="6"
+                                        HeightRequest="24"
+                                        WidthRequest="24"
+                                        CornerRadius="12"
+                                        BackgroundColor="#ECECEC"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand">
+                                        <BoxView.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnClearBoxTapped"/>
+                                        </BoxView.GestureRecognizers>
+                                    </BoxView>
+
+                                    <Label 
+                                        Grid.Row="0" 
+                                        Grid.Column="6"
+			                            FontFamily="{StaticResource MaterialFontFamily}"
+			                            FontSize="15" Padding="0"
+			                            Text="{x:Static fontawesome:AppFlatIcons.Close}"
+			                            TextColor="Black" 
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnClearLabelTapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+	                                    FontFamily="WorkSansRegularFontFamily"
+	                                    FontSize="14"
+	                                    Text="Quantity"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+	                                    TextColor="{StaticResource FontGrey}" />
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="3"
+                                        Grid.ColumnSpan="4"
 	                                    FontFamily="WorkSansSemiBoldFontFamily"
 	                                    FontSize="16"
-	                                    Text="{Binding Name}"
-                                        MaxLines="1"
-                                        HorizontalOptions="StartAndExpand"
-                                        LineBreakMode="TailTruncation"
+	                                    Text="{Binding TotalQuantity}"
+                                        HorizontalTextAlignment="End"
+                                        VerticalTextAlignment="Center"
 	                                    TextColor="{StaticResource FontBlack}" />
 
                                     <Label
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
 	                                    FontFamily="WorkSansRegularFontFamily"
-	                                    FontSize="16"
-	                                    Text="Zpc1287"
-                                        MaxLines="1"
-                                        HorizontalOptions="StartAndExpand"
-                                        LineBreakMode="TailTruncation"
+	                                    FontSize="14"
+	                                    Text="Price/unit"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
 	                                    TextColor="{StaticResource FontGrey}" />
-                                </StackLayout>
 
-                                <Frame 
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    Padding="0,2,0,2" 
-                                    IsClippedToBounds="True" 
-                                    HasShadow="False"
-                                    CornerRadius="10"
-                                    BackgroundColor="#9CFFA6"
-                                    VerticalOptions="CenterAndExpand"
-                                    BorderColor="#00A811">
                                     <Label
+                                        Grid.Row="4"
+                                        Grid.Column="3"
+                                        Grid.ColumnSpan="4"
+	                                    FontFamily="WorkSansSemiBoldFontFamily"
+	                                    FontSize="16"
+                                        HorizontalTextAlignment="End"
+                                        VerticalTextAlignment="Center"
+	                                    TextColor="{StaticResource FontBlack}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="$ "/>
+                                                <Span Text="{Binding PriceUnit}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label
+                                        Grid.Row="6"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
 	                                    FontFamily="WorkSansRegularFontFamily"
-	                                    FontSize="12"
-	                                    Text="In stock"
-                                        HorizontalOptions="CenterAndExpand"
-                                        VerticalOptions="CenterAndExpand"
-	                                    TextColor="#00A811" />
-                                </Frame>
+	                                    FontSize="14"
+	                                    Text="BIN Number"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+	                                    TextColor="{StaticResource FontGrey}" />
 
-                                <BoxView 
-                                    Grid.Row="0" Grid.Column="3" 
-                                    HeightRequest="24"
-                                    WidthRequest="24"
-                                    CornerRadius="12"
-                                    BackgroundColor="#ECECEC"
-                                    HorizontalOptions="CenterAndExpand"
-                                    VerticalOptions="CenterAndExpand">
-                                    <BoxView.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnMinusBoxViewTapped"/>
-                                    </BoxView.GestureRecognizers>
-                                </BoxView>
+                                    <Label
+                                        Grid.Row="6"
+                                        Grid.Column="3"
+                                        Grid.ColumnSpan="4"
+	                                    FontFamily="WorkSansSemiBoldFontFamily"
+	                                    FontSize="16"
+	                                    Text="{Binding BinNumber}"
+                                        HorizontalTextAlignment="End"
+                                        VerticalTextAlignment="Center"
+	                                    TextColor="{StaticResource FontBlack}" />
 
-                                <Label 
-                                    Grid.Row="0" Grid.Column="3"
-			                        FontFamily="{StaticResource MaterialFontFamily}"
-			                        FontSize="15" Padding="0"
-			                        Text="{x:Static fontawesome:AppFlatIcons.Minus}"
-			                        TextColor="Black" 
-                                    HorizontalTextAlignment="Center"
-                                    VerticalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnMinusLabelTapped"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                    <BoxView 
+                                        Grid.Row="8" 
+                                        Grid.ColumnSpan="7" 
+                                        BackgroundColor="{StaticResource BorderColorGrey}"/>
 
-                                <Label
-                                    Grid.Row="0" Grid.Column="4"
-	                                FontFamily="WorkSansRegularFontFamily"
-	                                FontSize="18"
-	                                HorizontalTextAlignment="Center"
-	                                Text="{Binding Quantity}"
-	                                TextColor="{StaticResource FontBlack}"
-	                                VerticalTextAlignment="Center" />
+                                    <Label
+                                        Grid.Row="10"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+	                                    FontFamily="WorkSansRegularFontFamily"
+	                                    FontSize="14"
+	                                    Text="Total"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+	                                    TextColor="{StaticResource FontGrey}" />
 
-                                <BoxView 
-                                    Grid.Row="0" Grid.Column="5" 
-                                    HeightRequest="24"
-                                    WidthRequest="24"
-                                    CornerRadius="12"
-                                    BackgroundColor="#FFA200"
-                                    HorizontalOptions="CenterAndExpand"
-                                    VerticalOptions="CenterAndExpand">
-                                    <BoxView.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnPlusBoxViewTapped"/>
-                                    </BoxView.GestureRecognizers>
-                                </BoxView>
+                                    <Label
+                                        Grid.Row="10"
+                                        Grid.Column="3"
+                                        Grid.ColumnSpan="4"
+	                                    FontFamily="WorkSansSemiBoldFontFamily"
+	                                    FontSize="16"
+                                        HorizontalTextAlignment="End"
+                                        VerticalTextAlignment="Center"
+	                                    TextColor="{StaticResource FontBlack}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="$ "/>
+                                                <Span Text="{Binding Total}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
 
-                                <Label 
-                                    Grid.Row="0" Grid.Column="5"
-			                        FontFamily="{StaticResource MaterialFontFamily}"
-			                        FontSize="15" Padding="0"
-			                        Text="{x:Static fontawesome:AppFlatIcons.Plus}"
-			                        TextColor="Black" 
-                                    HorizontalTextAlignment="Center"
-                                    VerticalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnPlusLabelTapped"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
+                <Grid HeightRequest="50" Margin="20">
+                    <Label
+                        Grid.Column="0"
+	                    FontFamily="WorkSansRegularFontFamily"
+	                    FontSize="14"
+	                    Text="Total"
+                        HorizontalTextAlignment="Start"
+                        VerticalTextAlignment="Center"
+	                    TextColor="{StaticResource FontGrey}" />
 
-                                <Label 
-                                    Grid.Row="0" Grid.Column="6"
-			                        FontFamily="{StaticResource MaterialFontFamily}"
-			                        FontSize="25" Padding="0"
-			                        Text="{x:Static fontawesome:AppFlatIcons.TrashCanOutline}"
-			                        TextColor="Black" 
-                                    HorizontalTextAlignment="Center"
-                                    VerticalTextAlignment="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnClearButtonTapped"/>
-                                    </Label.GestureRecognizers>
-                                </Label>
-
-                                <Label
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-	                                FontFamily="WorkSansRegularFontFamily"
-	                                FontSize="14"
-	                                Text="Quantity"
-                                    HorizontalTextAlignment="Start"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontGrey}" />
-
-                                <Label
-                                    Grid.Row="2"
-                                    Grid.Column="3"
-                                    Grid.ColumnSpan="4"
-	                                FontFamily="WorkSansSemiBoldFontFamily"
-	                                FontSize="16"
-	                                Text="{Binding TotalQuantity}"
-                                    HorizontalTextAlignment="End"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontBlack}" />
-
-                                <Label
-                                    Grid.Row="4"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-	                                FontFamily="WorkSansRegularFontFamily"
-	                                FontSize="14"
-	                                Text="Price/unit"
-                                    HorizontalTextAlignment="Start"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontGrey}" />
-
-                                <Label
-                                    Grid.Row="4"
-                                    Grid.Column="3"
-                                    Grid.ColumnSpan="4"
-	                                FontFamily="WorkSansSemiBoldFontFamily"
-	                                FontSize="16"
-                                    HorizontalTextAlignment="End"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontBlack}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="$ "/>
-                                            <Span Text="{Binding PriceUnit}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-
-                                <Label
-                                    Grid.Row="6"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-	                                FontFamily="WorkSansRegularFontFamily"
-	                                FontSize="14"
-	                                Text="BIN Number"
-                                    HorizontalTextAlignment="Start"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontGrey}" />
-
-                                <Label
-                                    Grid.Row="6"
-                                    Grid.Column="3"
-                                    Grid.ColumnSpan="4"
-	                                FontFamily="WorkSansSemiBoldFontFamily"
-	                                FontSize="16"
-	                                Text="{Binding Number}"
-                                    HorizontalTextAlignment="End"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontBlack}" />
-
-                                <BoxView Grid.Row="8" Grid.ColumnSpan="7" BackgroundColor="{StaticResource BorderColorGrey}"/>
-
-                                <Label
-                                    Grid.Row="10"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-	                                FontFamily="WorkSansRegularFontFamily"
-	                                FontSize="14"
-	                                Text="Total"
-                                    HorizontalTextAlignment="Start"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontGrey}" />
-
-                                <Label
-                                    Grid.Row="10"
-                                    Grid.Column="3"
-                                    Grid.ColumnSpan="4"
-	                                FontFamily="WorkSansSemiBoldFontFamily"
-	                                FontSize="16"
-                                    HorizontalTextAlignment="End"
-                                    VerticalTextAlignment="Center"
-	                                TextColor="{StaticResource FontBlack}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="$ "/>
-                                            <Span Text="{Binding Total}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                    <Label
+                        Grid.Column="1"
+	                    FontFamily="WorkSansSemiBoldFontFamily"
+	                    FontSize="16"
+                        HorizontalTextAlignment="End"
+                        VerticalTextAlignment="Center"
+	                    TextColor="{StaticResource FontBlack}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$ "/>
+                                <Span Text="{Binding TotalPrice}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
             </StackLayout>
         </ScrollView>
 

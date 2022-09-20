@@ -50,10 +50,15 @@ namespace WareHousePickPack.ViewModels
 			PackedTabColor = Color.FromHex("#B5B5B5");
 			var pickOrderItems = Helper.Helper.PickOrPackOrderItems.Where(x => x.IsPicked == false && x.WarehouseId == SelectedWarehouse.Id).ToList();
 			PickOrderItems = new ObservableCollection<Models.Order>(pickOrderItems);
+			
 			if (PickOrderItems.Count == 0)
 			{
 				IsEmptyListMessage = true;
-				EmptyListMessage = $"No item found for pick.{System.Environment.NewLine}Please click here to reload the data.";
+				var packedItem = Helper.Helper.PickOrPackOrderItems.FirstOrDefault(x => x.IsPacked == false);
+				if (packedItem == null)
+					EmptyListMessage = $"No item found for pick.{System.Environment.NewLine}Please click here to reload the data.";
+				else
+					EmptyListMessage = "No item found for pick.";
 			}
 		}
 		#endregion
@@ -75,7 +80,11 @@ namespace WareHousePickPack.ViewModels
 			if (PackOrderItems.Count == 0)
 			{
 				IsEmptyListMessage = true;
-				EmptyListMessage = "No item found for pack.";
+				var packedItem = Helper.Helper.PickOrPackOrderItems.FirstOrDefault(x => x.IsPacked == false);
+				if (packedItem == null)
+					EmptyListMessage = $"No item found for pack.{System.Environment.NewLine}Please click here to reload the data.";
+				else
+					EmptyListMessage = "No item found for pack.";
 			}
 			await Task.CompletedTask;
 		}

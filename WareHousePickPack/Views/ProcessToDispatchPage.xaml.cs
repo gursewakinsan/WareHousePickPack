@@ -18,8 +18,7 @@ namespace WareHousePickPack.Views
             NavigationPage.SetBackButtonTitle(this, "");
             BindingContext = viewModel = new ProcessToDispatchPageViewModel(this.Navigation);
             viewModel.SelectedOrderForDispatch = selectedOrderForDispatch;
-            viewModel.ProcessToDispatchList = new System.Collections.ObjectModel.ObservableCollection<Models.Order>();
-            viewModel.ProcessToDispatchList.Add(selectedOrderForDispatch);
+            viewModel.ProcessToDispatchList = new System.Collections.ObjectModel.ObservableCollection<Models.Product>(selectedOrderForDispatch.Products);
         }
         #endregion
     }
