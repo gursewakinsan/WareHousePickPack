@@ -1,4 +1,6 @@
-﻿namespace WareHousePickPack.Models
+﻿using Xamarin.Forms;
+
+namespace WareHousePickPack.Models
 {
     public class Product : BaseModel
     {
@@ -10,7 +12,23 @@
         public int BinNumber { get; set; }
         public string ProductDescription { get; set; }
 
-        private int quantity;
+		private bool isQualityCheck = false;
+		public bool IsQualityCheck
+		{
+			get => isQualityCheck;
+			set
+			{
+				isQualityCheck = value;
+				if (value)
+					QualityCheckBg = Color.FromHex("#20A5E1");
+				else
+					QualityCheckBg = Color.FromHex("#D2D2D2");
+				//OnPropertyChanged("IsQualityCheck");
+			}
+		}
+
+
+		private int quantity;
 		public int Quantity
 		{
 			get => quantity;
@@ -32,6 +50,16 @@
 			}
 		}
 
+		private Color qualityCheckBg;
+		public Color QualityCheckBg
+		{
+			get => qualityCheckBg;
+			set
+			{
+				qualityCheckBg = value;
+				OnPropertyChanged("QualityCheckBg");
+			}
+		}
 		public string DisplayGrandTotal => $"$ {TotalQuantity * PriceUnit}";
 	}
 }

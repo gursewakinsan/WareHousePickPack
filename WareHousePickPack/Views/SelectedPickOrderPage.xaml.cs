@@ -17,6 +17,8 @@ namespace WareHousePickPack.Views
             InitializeComponent();
             NavigationPage.SetBackButtonTitle(this, "");
             BindingContext = viewModel = new SelectedPickOrderPageViewModel(this.Navigation);
+            foreach (var product in selectedOrder.Products)
+                product.Quantity = 0;
             viewModel.PickOrderDetailInfo = new System.Collections.ObjectModel.ObservableCollection<Models.Product>(selectedOrder.Products);
             viewModel.SelectedPickOrderDetailInfo = selectedOrder;
             btnPickOrder.IsEnabled = false;

@@ -37,8 +37,7 @@
 			        HorizontalTextAlignment="Start"
 			        Text="{Binding SelectedWarehouse.Name}"
 			        TextColor="Black"
-                    MaxLines="1" WidthRequest="160"
-                    LineBreakMode="TailTruncation"
+                    MaxLines="1"
 			        VerticalTextAlignment="Start">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnWareHouseLabelTapped"/>

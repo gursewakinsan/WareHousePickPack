@@ -257,12 +257,15 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="24"/>
                                     </Grid.RowDefinitions>
-                                        
+
                                     <Frame
                                         Padding="0" 
                                         IsClippedToBounds="True" 
                                         HasShadow="False"
-                                        BackgroundColor="{StaticResource FontBlue}">
+                                        BackgroundColor="{Binding QualityCheckBg}">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnFrameQualityCheckTapped"/>
+                                        </Frame.GestureRecognizers>
 
                                         <Label 
 			                                FontFamily="{StaticResource MaterialFontFamily}"
@@ -270,7 +273,11 @@
 			                                Text="{x:Static fontawesome:AppFlatIcons.Check}"
 			                                TextColor="White" 
                                             HorizontalTextAlignment="Center"
-                                            VerticalTextAlignment="Center"/>
+                                            VerticalTextAlignment="Center">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnLabelQualityCheckTapped"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
                                     </Frame>
 
                                     <Label
@@ -281,7 +288,11 @@
 			                            HorizontalTextAlignment="Start"
 			                            Text="Quality check"
 			                            TextColor="{StaticResource FontGrey}"
-			                            VerticalTextAlignment="Center"/>
+			                            VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnLabelQualityCheckTapped"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </Grid>
                             </StackLayout>
                             
@@ -321,6 +332,7 @@
             CornerRadius="10" 
             Margin="20,0,20,0" 
             Padding="0"
+            x:Name="btnProcessToDispatch"
             Command="{Binding ProcessToDispatchCommand}"
             FontFamily="PoppinsRegularFontFamily"/>
     </Grid>

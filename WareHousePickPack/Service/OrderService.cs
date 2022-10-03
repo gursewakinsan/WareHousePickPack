@@ -31,7 +31,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 2,
                         PriceUnit = 1500,
                         BinNumber = 3021486,
-                        ProductDescription="ABX2012"
+                        ProductDescription="ABX2012",
+                        IsQualityCheck=false
                     },
                     new Models.Product()
                     {
@@ -41,7 +42,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 1,
                         PriceUnit = 1100,
                         BinNumber = 142578,
-                        ProductDescription="BSH458"
+                        ProductDescription="BSH458",
+                        IsQualityCheck=false
                     }
                  }
             });
@@ -64,7 +66,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 1,
                         PriceUnit = 500,
                         BinNumber = 632445,
-                        ProductDescription="OUJWL854"
+                        ProductDescription="OUJWL854",
+                        IsQualityCheck=false
                     },
                     new Models.Product()
                     {
@@ -74,7 +77,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 1,
                         PriceUnit = 800,
                         BinNumber = 965123,
-                        ProductDescription="PJH9822"
+                        ProductDescription="PJH9822",
+                        IsQualityCheck=false
                     }
                  }
             });
@@ -97,7 +101,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 1,
                         PriceUnit = 2500,
                         BinNumber = 023366,
-                        ProductDescription="NHGT6325"
+                        ProductDescription="NHGT6325",
+                        IsQualityCheck=false
                     },
                     new Models.Product()
                     {
@@ -107,7 +112,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 1,
                         PriceUnit = 2800,
                         BinNumber = 125546,
-                        ProductDescription="QAY5201"
+                        ProductDescription="QAY5201",
+                        IsQualityCheck=false
                     }
                  }
             });
@@ -130,7 +136,8 @@ namespace WareHousePickPack.Service
                         TotalQuantity = 1,
                         PriceUnit = 7200,
                         BinNumber = 12121,
-                        ProductDescription="FDSF7530"
+                        ProductDescription="FDSF7530",
+                        IsQualityCheck=false
                     }
                  }
             });

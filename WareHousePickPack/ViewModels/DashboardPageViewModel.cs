@@ -118,9 +118,12 @@ namespace WareHousePickPack.ViewModels
 		}
 		private void ExecuteReloadDataCommand()
 		{
-			IOrderService orderService = new OrderService();
-			Helper.Helper.PickOrPackOrderItems = orderService.GetAllOrderItems();
-			GetPickOrderItemsCommand.Execute(null);
+			if (EmptyListMessage.Contains("Please click here to reload the data"))
+			{
+				IOrderService orderService = new OrderService();
+				Helper.Helper.PickOrPackOrderItems = orderService.GetAllOrderItems();
+				GetPickOrderItemsCommand.Execute(null);
+			}
 		}
 		#endregion
 
