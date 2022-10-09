@@ -59,6 +59,18 @@ namespace WareHousePickPack.ViewModels
 			{
 				totalPrice = value;
 				OnPropertyChanged("TotalPrice");
+				DisplayTotalPrice = value.ToString("N2");
+			}
+		}
+
+		private string displayTotalPrice = "0.00";
+		public string DisplayTotalPrice
+		{
+			get => displayTotalPrice;
+			set
+			{
+				displayTotalPrice = value;
+				OnPropertyChanged("DisplayTotalPrice");
 			}
 		}
 

@@ -25,7 +25,10 @@ namespace WareHousePickPack.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.GetPickOrderItemsCommand.Execute(null);
+            if (Helper.Helper.IsPicked)
+                viewModel.GetPickOrderItemsCommand.Execute(null);
+            else
+                viewModel.GetPackOrderItemsCommand.Execute(null);
         }
         #endregion
 

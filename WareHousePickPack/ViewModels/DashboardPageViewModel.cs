@@ -46,6 +46,7 @@ namespace WareHousePickPack.ViewModels
 		{
 			IsEmptyListMessage = false;
 			IsPicked = true;
+			Helper.Helper.IsPicked = true;
 			PickedTabColor = Color.Black;
 			PackedTabColor = Color.FromHex("#B5B5B5");
 			var pickOrderItems = Helper.Helper.PickOrPackOrderItems.Where(x => x.IsPicked == false && x.WarehouseId == SelectedWarehouse.Id).ToList();
@@ -73,6 +74,7 @@ namespace WareHousePickPack.ViewModels
 		{
 			IsEmptyListMessage = false;
 			IsPicked = false;
+			Helper.Helper.IsPicked = false;
 			PickedTabColor = Color.FromHex("#B5B5B5");
 			PackedTabColor = Color.Black;
 			var packOrderItems = Helper.Helper.PickOrPackOrderItems.Where(x => x.IsPicked == true && x.IsPacked == false && x.WarehouseId == SelectedWarehouse.Id).ToList();

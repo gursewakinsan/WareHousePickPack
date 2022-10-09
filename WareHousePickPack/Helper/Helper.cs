@@ -14,5 +14,6 @@ namespace WareHousePickPack.Helper
 		}
 
         public static List<Models.Order> PickOrPackOrderItems { get; set; }
+		public static bool IsPicked { get; set; } = true;
     }
 }

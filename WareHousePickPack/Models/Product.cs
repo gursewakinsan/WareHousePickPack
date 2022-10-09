@@ -9,7 +9,8 @@ namespace WareHousePickPack.Models
 		public string Image { get; set; }
 		public int TotalQuantity { get; set; }
 		public int PriceUnit { get; set; }
-        public int BinNumber { get; set; }
+		public string DisplayPriceUnit => PriceUnit.ToString("N2");
+		public int BinNumber { get; set; }
         public string ProductDescription { get; set; }
 
 		private bool isQualityCheck = false;
@@ -47,6 +48,18 @@ namespace WareHousePickPack.Models
 			{
 				total = value;
 				OnPropertyChanged("Total");
+				DisplayTotal = value.ToString("N2");
+			}
+		}
+
+		private string displayTotal ="0.00";
+		public string DisplayTotal
+		{
+			get => displayTotal;
+			set
+			{
+				displayTotal = value;
+				OnPropertyChanged("DisplayTotal");
 			}
 		}
 
@@ -60,6 +73,6 @@ namespace WareHousePickPack.Models
 				OnPropertyChanged("QualityCheckBg");
 			}
 		}
-		public string DisplayGrandTotal => $"$ {TotalQuantity * PriceUnit}";
+		public string DisplayGrandTotal => "$" + (TotalQuantity * PriceUnit).ToString("N2");// $"$ {TotalQuantity * PriceUnit}";
 	}
 }

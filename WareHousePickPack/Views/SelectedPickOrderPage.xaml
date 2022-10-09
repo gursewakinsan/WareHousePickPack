@@ -372,8 +372,8 @@
 	                                    TextColor="{StaticResource FontBlack}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="$ "/>
-                                                <Span Text="{Binding PriceUnit}"/>
+                                                <Span Text="$"/>
+                                                <Span Text="{Binding DisplayPriceUnit}"/>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -427,8 +427,8 @@
 	                                    TextColor="{StaticResource FontBlack}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="$ "/>
-                                                <Span Text="{Binding Total}"/>
+                                                <Span Text="$"/>
+                                                <Span Text="{Binding DisplayTotal}"/>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -457,8 +457,8 @@
 	                    TextColor="{StaticResource FontBlack}">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="$ "/>
-                                <Span Text="{Binding TotalPrice}"/>
+                                <Span Text="$"/>
+                                <Span Text="{Binding DisplayTotalPrice}"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
